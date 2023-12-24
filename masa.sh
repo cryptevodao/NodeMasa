@@ -15,6 +15,11 @@ function line {
   echo -e "${GREEN}-----------------------------------------------------------------------------${NORMAL}"
 }
 
+function prepare_server {
+    bash <(curl -s https://raw.githubusercontent.com/cryptevodao/NodeMasa/main/prequisites.sh)
+    source $HOME/.profile
+    sleep 1
+}
 
 function install_go {
     bash <(curl -s https://github.com/cryptevodao/NodeMasa/blob/main/go.sh)
@@ -64,7 +69,7 @@ function main {
     line
     logo
     line
-    get_nodename
+    prepare_server
     line
     install_go
     source_build_git
