@@ -8,7 +8,7 @@ function colors {
 }
 
 function logo {
-  curl -s https://raw.githubusercontent.com/cryptevodao/NodeMasa/main/logo.sh | bash
+  curl -s https://raw.githubusercontent.com/cryptevodao/NodeMasa/master/logo.sh | bash
 }
 
 function line {
@@ -16,13 +16,13 @@ function line {
 }
 
 function prepare_server {
-    bash <(curl -s https://raw.githubusercontent.com/cryptevodao/NodeMasa/main/prequisites.sh)
+    bash <(curl -s https://raw.githubusercontent.com/cryptevodao/NodeMasa/master/prequisites.sh)
     source $HOME/.profile
     sleep 1
 }
 
 function install_go {
-    bash <(curl -s https://github.com/cryptevodao/NodeMasa/blob/main/go.sh)
+    bash <(curl -s https://raw.githubusercontent.com/cryptevodao/NodeMasa/master/go.sh)
     source $HOME/.profile
     sleep 1
 }
@@ -72,6 +72,7 @@ function main {
     prepare_server
     line
     install_go
+    line
     source_build_git
     line
     systemd
