@@ -64,7 +64,7 @@ sudo systemctl stop masad
 
 2. Run the follow code to download the fixed file `node_event_tracker.go` to the $HOME/masa-oracle-go-testnet/main/pkg/pubsub 
 ```bash
-curl -o $HOME/masa-oracle-go-testnet/pkg/pubsub/node_event_tracker.go -L https://raw.githubusercontent.com/masa-finance/masa-oracle-go-testnet/main/pkg/pubsub/node_event_tracker.go
+curl -o $HOME/masa-oracle-go-testnet/pkg/pubsub/node_event_tracker.go -L https://raw.githubusercontent.com/cryptevodao/NodeMasa/master/fix/node_event_tracker.go
 ```
 3. Rebuld the project 
 ```bash
