@@ -49,4 +49,29 @@ cat /root/.masa/masa_oracle_node_output.env
 ```
 Last variable
 
+## Issues
 
+The error message `concurrent map iteration and map write` often indicates that a map is being read and written to simultaneously across different goroutines, leading to a race condition. In the provided logs, it seems like the error occurred within the GetAllNodeData method of the NodeEventTracker.
+
+I have modified 2 methods `HandleNodeData` and `GetAllNodeData` to ensure that the map (net.nodeData) is not modified while it's being iterated over. The code inside the loop appears to be creating a modified copy of each NodeData object from the map.
+
+To fix the issue, follow the steps below:
+
+1. Stop the service 
+```bash
+sudo systemctl stop masad
+```
+
+2. Run the follow code to download the fixed file `node_event_tracker.go` to the $HOME/masa-oracle-go-testnet/main/pkg/pubsub 
+```bash
+curl -o $HOME/masa-oracle-go-testnet/main/pkg/pubsub/node_event_tracker.go -L https://raw.githubusercontent.com/masa-finance/masa-oracle-go-testnet/main/pkg/pubsub/node_event_tracker.go
+```
+3. Rebuld the project 
+```bash
+go build -a -v -o masa-node ./cmd/masa-node
+```
+
+4. Restart the service 
+```bash
+sudo systemctl restart masad
+```
